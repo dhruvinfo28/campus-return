@@ -70,6 +70,7 @@ router.get('/getImage/:id',(req,res)=>{
             res.send("Sorry some error");
         }else{
             res.write(db_response[0].file_buffer);
+            res.end(null,'binary');
         }
     })
 })
