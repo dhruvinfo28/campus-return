@@ -1,12 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../public/CSS/login.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/login.css">
     <title>Login</title>
 </head>
+
 <body>
-    Welcome to login!
+    <div class="Signup_Form">
+        <form action="" method="POST" id="login" class="animate">
+            <h1>SIGN IN</h1>
+            <input type="email" id="email" name="email" placeholder="Email Address*" required />
+            <input type="password" id="passcode" name="passcode" placeholder="Password*" required />
+            <button class="btn1" type="submit">SignIn</button>
+            <section>
+                <span><a href="#">Forgot Password?</a></span>
+                <span><a onclick="Signupform()">Don't have an account?</a></span>
+            </section>
+        </form>
+
+        <form action="" method="POST" id="signup" class="animate" hidden>
+            <h1>SIGN UP</h1>
+            <input type="text" id="username" name="name" placeholder="Full name*" required />
+            <input type="text" id="roll_number" name="roll_number" placeholder="Roll Number*" required />
+            <input type="email" id="emailaddress" name="email" placeholder="Institute Id*" required />
+            <input type="text" id="course" name="course " placeholder="Course">
+            <!-- <input type="tel" id="mob" name="mob" placeholder="Contact no*" required /> -->
+            <input type="password" id="password" name="password" placeholder="Password*" required />
+            <input type="password" id="Cpassword" name="Cpassword" placeholder="Confirm Password*"
+                onkeypress="Validate()" required />
+            <input type="number" id="year" name="year" placeholder="Year*" required/>
+            <input type="text" name="programme" id="programme" placeholder="Programme*" required>
+            <button type="submit" value="SignUp" class="btn1" onclick="ValidateSubmission()">Sign Up</button>
+            <section>
+                <span><a onclick="Loginform()">Already Registered?</a></span>
+            </section>
+        </form>
+    </div>
+    <div id="popup"></div>
+    <script src="JS/login.js"></script>
 </body>
+
 </html>
