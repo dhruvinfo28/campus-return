@@ -20,15 +20,14 @@ let createStudent = "create table if not exists student" +
                     "student_yearofgrad int,"+
                     "student_programme varchar(20));"
 
-db.query(createStudent,(err,db_response)=>{
-    if(err){
-        console.log('Error while creating student table: ')
-        console.log(err)
-    }else{
-        console.log('student table created:');
-        console.log(db_response)
-    }
-})        
+db.promise().query(createStudent)
+    .then(result=>{
+        console.log('student table created,' , result);
+    })
+    .catch(err=>{
+        console.log('Error in creating student table ', err);
+    })
+       
 
 setInterval(function () {
     db.query("Select 1");

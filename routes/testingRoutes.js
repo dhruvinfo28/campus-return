@@ -77,8 +77,20 @@ router.get('/getImage/:id',(req,res)=>{
 })
 
 router.get('/checkStudent',(req,res)=>{
-    let student = new Student();
-    console.log(student.getRollNumber());
-    res.send('yo');
+    // Student.findAll()
+    // .then(([rows,fields])=>{
+    //     res.send(rows);
+    // })
+    // .catch(err=>{
+    //     console.log(err);
+    // })
+
+    Student.findByRollNumber({rollNumber:'195048'})
+        .then(([rows,fields])=>{
+            res.send(rows);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
 })
 module.exports = router;
