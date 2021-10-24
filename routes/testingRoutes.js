@@ -4,6 +4,7 @@ const upload = require('../middlewares/multerConfig')
 
 const fs = require('fs')
 const router = express.Router();
+const Student = require('../models/Student');
 
 //Query any table by providing tableName in request query
 router.get('/queryAnyTable/:tableName',(req,res)=>{
@@ -75,4 +76,9 @@ router.get('/getImage/:id',(req,res)=>{
     })
 })
 
+router.get('/checkStudent',(req,res)=>{
+    let student = new Student();
+    console.log(student.getRollNumber());
+    res.send('yo');
+})
 module.exports = router;
