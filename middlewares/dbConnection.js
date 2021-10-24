@@ -16,7 +16,7 @@ let createStudent = "create table if not exists student" +
                     "student_name varchar(50),"+
                     "student_branch varchar(60),"+
                     "student_email_id varchar(60),"+
-                    "student_password varchar(30),"+
+                    "student_password varchar(150),"+
                     "student_yearofgrad int,"+
                     "student_programme varchar(20));"
 
