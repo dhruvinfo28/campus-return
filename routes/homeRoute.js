@@ -3,10 +3,10 @@ const express = require('express')
 const router = express.Router();
 
 router.get('/',(req,res)=>{
-    res.render('login');
+    res.render('login',{error:req.flash('error')});
 })
 
-router.get('/logout',(req,res)=>{
+router.use('/logout',(req,res)=>{
     req.session.destroy(function(err){
         if(err)
             console.log(err);

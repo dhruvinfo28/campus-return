@@ -17,7 +17,8 @@ router.post("/",async (req,res)=>{
     try{
         const [rows,fields] = await Student.findByRollNumber({rollNumber: req.body.roll_number || '1'});
         if(rows.length == 0){
-            console.log("Student not find while an attempted login, please register or verify !");
+            req.flash('error','No account found!');
+            console.log("Student not find while an attempted login, please register!");
             res.redirect('/');
         }
         else{
@@ -28,25 +29,30 @@ router.post("/",async (req,res)=>{
                         if(result){
                             //Save session, redirect to dashboard
                             console.log("Successfully logged in");
-                            req.session.student = attemptingStudent;
+                            req.session.student = new Student(attemptingStudent.student_roll_number,attemptingStudent.student_name,attemptingStudent.student_branch,attemptingStudent.student_email_id,attemptingStudent.student_yearofgrad,attemptingStudent.student_programme);
                             res.redirect('/dashboard');
                         }
                         else{
+                            req.flash('error','Incorrect roll number or password!');
                             console.log("Wrong password");
                             res.redirect('/');
                         }
                     }else{
                         console.log("Bcrypt compare error!");
                         console.log(bcryptErr);
+                        req.flash('error','Try again later');
+                        res.redirect('/');
                     }
                 })
             }else{
+                req.flash('error','Please confirm your email first');
                 console.log("Student not verified");
                 res.redirect('/');
             }
         }
 
     }catch(StudendFindErr){
+        req.flash('error','Try again later.');
         console.log("There was some error in finding student by roll number");
         res.redirect('/');
     }

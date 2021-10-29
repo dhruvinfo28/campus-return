@@ -12,9 +12,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/login.css">
     <title>Login</title>
+    <style>
+        #errorFromBackend{
+            color:red;
+            background-color: white;
+        }
+    </style>
 </head>
 
 <body>
+    <div id="errorFromBackend">
+        <%= error %>
+    </div>
     <div class="Signup_Form">
         <form action="/login" method="POST" id="login" class="animate">
             <h1>SIGN IN</h1>

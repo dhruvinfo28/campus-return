@@ -1,7 +1,7 @@
 const db = require('../middlewares/dbConnection');
 
 class Student {
-    constructor(rollNumber, name, branch, emailId, password, yearOfGrad, programme,token) {
+    constructor(rollNumber, name, branch, emailId, yearOfGrad, programme,token,password) {
         this.rollNumber = rollNumber || null;
         this.name = name || null;
         this.branch = branch || null;

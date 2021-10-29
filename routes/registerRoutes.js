@@ -15,8 +15,8 @@ router.post('/', async (req, res) => {
      * Check if the given email is institute id
      */
     if (!data.email.match("@nith.ac.in$")) {
-        //A flash message saying, use institute id
         console.log("Not institute ID");
+        req.flash('error','Please use institute ID');
         res.redirect('/');
     }
     else {
@@ -36,6 +36,7 @@ router.post('/', async (req, res) => {
                     hashedPassword = await bcrypt.hash(data.password, 10);
                 } catch (bcryptErr) {
                     console.log("bcryptErr, ", bcryptErr);
+                    req.flash('error','Please try again later');
                     res.redirect('/');
                     return;
                 }
@@ -48,34 +49,35 @@ router.post('/', async (req, res) => {
                     token = await crypto.randomBytes(16).toString("hex");
                     console.log(token);
                 } catch (tokenErr) {
-                    //A flash saying some internal error occured
+                    
+                    req.flash('error','Please try again later');
                     console.log("Token generation error");
                     res.redirect('/');
                 }
-
+                
                 /**
                  * Saving the student
                  */
-                let student = new Student(data.roll_number, data.name, data.branch, data.email, hashedPassword, data.year, data.programme, token);
-
+                let student = new Student(data.roll_number, data.name, data.branch, data.email, data.year, data.programme, token,hashedPassword);
+                
                 try {
-                    //A flash saying , registered now log in
                     const result = await student.save();
                     console.log("Student saved, ", result);
+                    req.flash('error','Registered, confirm your email and login!')
                     res.redirect('/');
                 } catch (saveError) {
-                    //A flash saying please try again later
+                    req.flash('error','Please try again later');
                     console.log("Error in saving a student, ", saveError);
                     res.redirect('/');
                 }
-
+                
             } else {
-                //A flash message saying already registered
+                req.flash('error','ALready registered, please login!');
                 console.log('Student already registered');
                 res.redirect('/');
             }
         } catch (err) {
-            //A flash message saying try again later
+            req.flash('error','Please try again later');
             console.log("Error in fetching student by roll number");
             res.redirect('/');
         }

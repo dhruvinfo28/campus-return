@@ -1,5 +1,6 @@
 const express = require("express");
 const session = require('express-session')
+const csurf = require('connect-flash')
 
 const app = require("./server");
 const db = require('./middlewares/dbConnection');
@@ -15,6 +16,7 @@ app.use(session({
     saveUninitialized: true,
     // cookie: { secure: true }
 }))
+app.use(csurf());
 
 app.use('/',require('./routes/homeRoute'));
 app.use('/login',require('./routes/loginRoutes'));
