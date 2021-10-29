@@ -1,7 +1,7 @@
 const db = require('../middlewares/dbConnection');
 
 class Student {
-    constructor(rollNumber, name, branch, emailId, password, yearOfGrad, programme) {
+    constructor(rollNumber, name, branch, emailId, password, yearOfGrad, programme,token) {
         this.rollNumber = rollNumber || null;
         this.name = name || null;
         this.branch = branch || null;
@@ -9,6 +9,8 @@ class Student {
         this.password = password || null;
         this.yearOfGrad = yearOfGrad || null;
         this.programme = programme || null;
+        this.token = token || null;
+        this.verificationStatus = 0;
     }
 
     /**
@@ -17,8 +19,8 @@ class Student {
      */
     save() {
         const insertQuery = "insert into student values(" +
-            "?,?,?,?,?,?,?);";
-        return db.promise().query(insertQuery, [this.rollNumber, this.name, this.branch, this.emailId, this.password, this.yearOfGrad, this.programme]);
+            "?,?,?,?,?,?,?,?,?);";
+        return db.promise().query(insertQuery, [this.rollNumber, this.name, this.branch, this.emailId, this.password, this.yearOfGrad, this.programme,this.token, this.verificationStatus]);
     }
 
     /**
