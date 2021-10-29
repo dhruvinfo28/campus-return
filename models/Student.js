@@ -45,6 +45,11 @@ class Student {
         let findQuery = "select * from student";
         return db.promise().query(findQuery);
     }
+
+    static async setVerifiedByToken(token){
+        let updateQuery = "update student set student_verified_status=? where student_token = ?";
+        return db.promise().query(updateQuery,[1,token]);
+    }
 }
 
 module.exports = Student;

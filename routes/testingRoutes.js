@@ -5,6 +5,7 @@ const upload = require('../middlewares/multerConfig')
 const fs = require('fs')
 const router = express.Router();
 const Student = require('../models/Student');
+const mailer = require('../utilityFunctions/sendConfirmationMail');
 
 //Query any table by providing tableName in request query
 router.get('/queryAnyTable/:tableName',(req,res)=>{
@@ -92,5 +93,9 @@ router.get('/checkStudent',(req,res)=>{
         .catch(err=>{
             console.log(err);
         })
+})
+
+router.get('/confirmationMail/:rollNumber/:email',(req,res)=>{
+    mailer(req.params.rollNumber,req.params.email);
 })
 module.exports = router;
