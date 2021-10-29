@@ -19,7 +19,7 @@ module.exports = async function(studentRollNumber, studentEmail){
         let response = await transporter.sendMail({
             to:studentEmail,
             subject:'Confirmation mail from campus return',
-            html:`<a href = ${url}/confirmEmail/ ${student.student_token}>Click here!</a>`
+            html:`<a href = ${url}/confirmEmail/${student.student_token}>Click here!</a>`
         })
         console.log(response);
         return response;
