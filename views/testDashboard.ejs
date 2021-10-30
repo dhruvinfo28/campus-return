@@ -1,17 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="CSS/studentDashboard.css">
 </head>
-<body>
-    You got in!
-    <%= student.name %>
 
-    <form action="/logout" method="post">
-        <button type="submit">Logout</button>
-    </form>
+<body>
+    <div class="image-bg">
+        <img src="images/nith_img.jpg" alt="">
+    </div>
+
+    <div class="app">
+        <div class="header">
+            <div class="header-menu">Welcome <%= student.name %>!</div>
+            <div class="header-profile">
+                <div class="notification">
+                    <span class="notification-number">3</span>
+                    <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell">
+                        <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"></path>
+                    </svg>
+                </div>
+                <form action="/logout" method="post">
+                    <button type="submit" class="logout">
+                        <img src="images/logout.png" alt="">
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="main-container">
+                <div class="main-header">
+                    <div class="floating-bar">
+                        <div class="hwrap">
+                            <div class="hmove">
+                                <div class="hitem">Last Application Status: Under Review</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-wrapper">
+                    <div class="content-section">
+                        <div class="content-section-title">Last Aplication Details</div>
+                        <ul>
+                            <li>
+                                <div class="products">First Dose Certificate</div>
+                                <span class="status">
+                                    <span class="status-circle orange"></span>
+                                    Under Review</span>
+                                <div class="button-wrapper">
+                                    <button class="content-button status-button">View Certificate</button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="products">Second Dose Certificate</div>
+                                <span class="status">
+                                    <span class="status-circle red"></span>
+                                    Upload first</span>
+                                <div class="button-wrapper">
+                                    <button class="content-button status-button open">Not Uploaded Yet</button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="products">RTPCR Report Certificate</div>
+                                <span class="status">
+                                    <span class="status-circle green"></span>
+                                    Verified</span>
+                                <div class="button-wrapper">
+                                    <button class="content-button status-button">View Certificate</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="content-section">
+                        <div class="content-section-title">New Application Form</div>
+                        <div class="apps-card">
+                            <div class="app-card">
+                                <span>First Dose Certificate</span>
+                                <form>
+                                    <div class="app-card__subtext">
+                                        <input type="text" id="firstDoseID" name="firstDoseID"
+                                            placeholder="Beneficiary ID" required />
+                                        <input type="file" id="fDoseCertificate" name="fDoseCertificate" placeholder="Upload First Dose Certificate"
+                                            required />
+                                    </div>
+                                    <div class="app-card-button">
+                                        <button class="content-button status-button">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="app-card">
+                                <span>Second Dose Certificate</span>
+                                <form>
+                                    <div class="app-card__subtext">
+                                        <input type="text" id="secondDoseID" name="secondDoseID"
+                                            placeholder="Beneficiary ID" required />
+                                        <input type="file" id="sDoseCertificate" name="sDoseCertificate" placeholder="Upload Second Dose Certificate"
+                                            required />
+                                    </div>
+                                    <div class="app-card-button">
+                                        <button class="content-button status-button">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="app-card">
+                                <span>RTPCR Report Certificate <span style="color: red;"> *Enter expiration Date</span></span>
+                                <form>
+                                    <div class="app-card__subtext">
+                                        <input type="date" id="rtpcrExpiry" name="rtpcrExpiry"
+                                            placeholder="RTPCR Expiry Date" required />
+                                        <input type="file" id="rtpcrCertificate" name="rtpcrCertificate" placeholder="Upload RTPCR Certificate"
+                                            required />
+                                    </div>
+                                    <div class="app-card-button">
+                                        <button class="content-button status-button">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
