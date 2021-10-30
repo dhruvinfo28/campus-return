@@ -299,10 +299,15 @@
     font-size: 16px;
     background-color: rgb(146 151 179 / 13%);
     border-radius: 14px;
-    border: 1px solid #f9fafb55;
+    border: 1px solid #75849255;
     padding: 20px;
     cursor: pointer;
     transition: 0.3s ease;
+}
+.app-card:hover {
+    transform: scale(1.02);
+    background-color: var(--theme-bg-color);
+    border: 1px solid #75849233;    
 }
 .app-card span {
     display: flex;
