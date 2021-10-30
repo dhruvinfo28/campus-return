@@ -1,4 +1,5 @@
 const Student = require('../models/Student');
+const mailer = require('../utilityFunctions/sendConfirmationMail');
 
 const express = require('express')
 const bcrypt = require('bcrypt')
@@ -59,7 +60,6 @@ router.post('/', async (req, res) => {
                  * Saving the student
                  */
                 let student = new Student(data.roll_number, data.name, data.branch, data.email, data.year, data.programme, token,hashedPassword);
-                
                 try {
                     const result = await student.save();
                     console.log("Student saved, ", result);
@@ -69,6 +69,16 @@ router.post('/', async (req, res) => {
                     req.flash('error','Please try again later');
                     console.log("Error in saving a student, ", saveError);
                     res.redirect('/');
+                }
+
+                /**
+                 * Sending a mail in the background:
+                 */
+                try{
+                    let mailStatus = await mailer(data.roll_number,data.email);
+                    console.log("Confirmation mail sent successfully!", mailStatus);
+                }catch(err){
+                    console.log("Error sending confirmation mail: ", err);
                 }
                 
             } else {
