@@ -24,22 +24,22 @@
     <div class="image-bg">
         <img src="images/nith_img.jpg" alt="">
     </div>
-    <div id="errorFromBackend">
-        <%= error %>
-    </div>
     <div class="Signup_Form">
         <form action="/login" method="POST" id="login" class="animate">
+            <div id="errorFromBackend">
+                <%= error %>
+            </div>
             <h1>SIGN IN</h1>
             <input type="text" id="email" name="roll_number" placeholder="Roll Number*" required />
             <input type="password" id="passcode" name="password" placeholder="Password*" required />
-            <button class="btn1" type="submit">SignIn</button>
+            <button class="content-button status-button" type="submit">SignIn</button>
             <section>
                 <span><a href="#">Forgot Password?</a></span>
                 <span><a onclick="Signupform()">Don't have an account?</a></span>
             </section>
         </form>
 
-        <form action="/register" method="POST" id="signup" class="animate" hidden>
+        <form action="/register" method="POST" id="signup" class="animate" onsubmit="return validateForm()" hidden>
             <h1>SIGN UP</h1>
             <input type="text" id="username" name="name" placeholder="Full name*" required />
             <input type="text" id="roll_number" name="roll_number" placeholder="Roll Number*" required />
@@ -51,7 +51,7 @@
                 onkeypress="Validate()" required />
             <input type="number" id="year" name="year" placeholder="Year*" required/>
             <input type="text" name="programme" id="programme" placeholder="Programme*" required>
-            <button type="submit" value="SignUp" class="btn1" onclick="ValidateSubmission()">Sign Up</button>
+            <button type="submit" value="SignUp" class="content-button status-button" onclick="ValidateSubmission()">Sign Up</button>
             <section>
                 <span><a onclick="Loginform()">Already Registered?</a></span>
             </section>

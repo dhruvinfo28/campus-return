@@ -1,6 +1,8 @@
 * {
     outline: none;
     box-sizing: border-box;
+    font-family: 'Recursive', sans-serif;
+
 }
 .image-bg {
     position: fixed;
@@ -303,6 +305,8 @@
     padding: 20px;
     cursor: pointer;
     transition: 0.3s ease;
+    /* min-height: 285px; */
+    position: relative;
 }
 .app-card:hover {
     transform: scale(1.02);
@@ -353,4 +357,15 @@ input:focus::placeholder,input:focus::-webkit-input-placeholder  {
     top:-10px; 
     font-size:12px;
     color:#f9fafb;
+}
+.new-application-submit{
+    width: 90vw;
+    display: flex;
+    align-items: center;
+    margin-top: 2vh;
+    flex-direction: column;
+}
+.new-application-submit button{
+    width: 15vw;
+    margin-left: -4vw;
 }
