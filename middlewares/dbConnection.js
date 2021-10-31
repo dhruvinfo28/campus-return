@@ -47,6 +47,7 @@ let createApplication = "create table if not exists Application" +
 let createFirstDose = "create table if not exists First_Dose" +
                     "(Fdose_id varchar(75) primary key,"+
                     "FD_Document mediumblob,"+
+                    "Benificiary_id varchar(50), "+
                     "student_roll_number varchar(20),"+
                     "constraint certificate_of "+
                     "foreign key(student_roll_number)"+
@@ -57,6 +58,7 @@ let createFirstDose = "create table if not exists First_Dose" +
 let createSecondDose = "create table if not exists Second_dose"+
                     "(Sdose_id varchar(75) primary key,"+
                     "FD_Document mediumblob,"+
+                    "Benificiary_id varchar(50),"+
                     "student_roll_number varchar(20),"+
                     "constraint sd_certificate_of "+
                     "foreign key (student_roll_number)"+

@@ -7,13 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="CSS/studentDashboard.css">
+    <style>
+        #error{
+            background-color: white;
+            color:red;
+        }
+    </style>
 </head>
 
 <body>
     <div class="image-bg">
         <img src="images/nith_img.jpg" alt="">
     </div>
-
+    <div id="error" >
+        <%= error %>
+    </div>
     <div class="app">
         <div class="header">
             <div class="header-menu">Welcome <%= student.name %>!</div>
@@ -53,7 +61,7 @@
                                     <span class="status-circle orange"></span>
                                     Under Review</span>
                                 <div class="button-wrapper">
-                                    <button class="content-button status-button">View Certificate</button>
+                                    <button class="content-button status-button" onClick="window.location.href='/dashboard/viewFirstDose';">View Certificate</button>
                                 </div>
                             </li>
                             <li>
@@ -81,7 +89,7 @@
                         <div class="apps-card">
                             <div class="app-card">
                                 <span>First Dose Certificate</span>
-                                <form>
+                                <form action="/dashboard/uploadFirstDose" method="post" enctype="multipart/form-data" >
                                     <div class="app-card__subtext">
                                         <input type="text" id="firstDoseID" name="firstDoseID"
                                             placeholder="Beneficiary ID" required />
@@ -89,7 +97,7 @@
                                             required />
                                     </div>
                                     <div class="app-card-button">
-                                        <button class="content-button status-button">Upload</button>
+                                        <button class="content-button status-button" type="submit">Upload</button>
                                     </div>
                                 </form>
                             </div>
