@@ -16,7 +16,7 @@ router.use(checkLoginStatus);
  */
 router.get('/',(req,res)=>{
     console.log("Reached /dashboard get");
-    res.render('testDashboard',{student:req.session.student,error:req.flash('error')});    
+    res.render('Dashboard',{student:req.session.student,error:req.flash('error')});    
 })
 
 /**
