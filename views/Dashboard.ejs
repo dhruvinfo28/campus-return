@@ -120,16 +120,18 @@
                             </div>
                             <div class="app-card">
                                 <span>RTPCR Report Certificate </span>
-                                <form>
+                                <form action="/dashboard/uploadRtpcr" method="post" enctype="multipart/form-data" >
                                     <div class="app-card__subtext">
                                         <input type="date" id="rtpcrExpiry" name="rtpcrExpiry"
-                                            placeholder="RTPCR Expiry Date" required />
+                                        placeholder="RTPCR Expiry Date" required />
                                         <span style="color: red; position: absolute; margin-top: -20px;"> *Enter expiration Date</span>
                                         <input type="file" id="rtpcrCertificate" name="rtpcrCertificate" placeholder="Upload RTPCR Certificate"
-                                            required />
+                                        required />
                                     </div>
                                     <div class="app-card-button">
                                         <button class="content-button status-button">Upload</button>
+                                        <button class="content-button status-button" onClick="window.location.href='/dashboard/viewRtpcr';" style="margin-left: 4px;">View</button>
+                                        
                                     </div>
                                 </form>
                             </div>

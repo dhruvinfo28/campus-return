@@ -1,11 +1,13 @@
 const express = require('express');
 const fs = require('fs')
+const crypto = require('crypto')
 
 const Student = require('../models/Student');
 const checkLoginStatus = require('../utilityFunctions/checkLoginStatus')
 const upload = require('../middlewares/multerConfig');
 const FirstDose = require('../models/FirstDose');
 const SecondDose = require('../models/SecondDose');
+const Rtpcr = require('../models/Rtpcr')
 
 const router = express.Router();
 
@@ -132,6 +134,83 @@ router.get('/viewSecondDose',async (req,res)=>{
         res.write(certi);
         res.end();
     }
+})
+
+/**
+ * To handle upload of RTPCR certificate
+ */
+router.post('/uploadRtpcr', upload.single('rtpcrCertificate'),async (req,res)=>{
+    console.log("Reached /dashboard/uploadRtpcr post");
+    let data;
+    let path = `${__dirname}/../resources/${req.file.filename}`;
+    try{
+        data = await fs.readFileSync(path);
+    }catch(FileReadError){
+        console.log("Error in reading rtpcr from the server!",FileReadError);
+        req.flash('error','Please try again later');
+        res.redirect('/dashboard');
+        return;
+    }
+
+    let pk;
+    try{
+        pk = await crypto.randomBytes(16).toString("hex");
+    }catch(tokenGenerationError){
+        console.log("Cannot generate primary key form rtpcr: ", tokenGenerationError);
+        req.flash('error','Plese try again later! ');
+        res.redirect('/dashboard');
+        return;
+    }
+
+    let fd = new Rtpcr(pk,data,req.body.rtpcrExpiry);
+    
+    try{
+        const dbResponse = await fd.save(req.session.student.rollNumber);
+        console.log("RTPCR saved: ",dbResponse);
+        req.flash('error','RTPCR certificate saved');
+        res.redirect('/dashboard');
+    }catch(dbError){
+        console.log("Can't save RTPCR report to db:", dbError);
+        req.flash('error','Try again later!');
+        res.redirect('/dashboard');
+    }    
+
+    fs.unlink(path,(err)=>{
+        if(err){
+            console.log("Can't delete local copy of RTPCR, ",err);
+        }else{
+            console.log("Local Rtpcr deleted");
+        }
+    })
+})
+
+/**
+ * To handle view request for Rtpcr 
+ */
+router.get('/viewRtpcr',async (req,res)=>{
+    console.log("Reached /dashboard/viewRtpcr get");
+    let rN = req.session.student.rollNumber;
+    let data;
+    
+    try{
+        data = await Rtpcr.findByRollNumber(rN);
+    }catch(dbError){
+        console.log("Error in finding Rtpcr certificate! ", dbError);
+        req.flash('error','Please try to view later!' );
+        res.redirect('/dashboard');
+        return;
+    }
+    let [rows,fields] = data;
+    if(rows.length == 0){
+        req.flash('error','No RTPCR found!');
+        res.redirect('/dashboard');
+    }
+    else{
+        res.write(rows[rows.length-1].FD_Document);
+        res.end();
+    }
+
+
 })
 
 module.exports = router;
