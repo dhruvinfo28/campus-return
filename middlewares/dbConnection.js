@@ -25,8 +25,7 @@ let createStudent = "create table if not exists student" +
 
 let createRTPCR =   "create table if not exists rtpcr" +
                     "(Rtpcr_id varchar(75) primary key," +
-                    "FD_Document mediumblob,"+
-                    "Expiration_date date,"+
+                    "FD_Document mediumblob, "+
                     "student_roll_number varchar(20)," +
                     "constraint has_report_of " +
                     "foreign key(student_roll_number)"+
@@ -46,8 +45,7 @@ let createApplication = "create table if not exists Application" +
 
 let createFirstDose = "create table if not exists First_Dose" +
                     "(Fdose_id varchar(75) primary key,"+
-                    "FD_Document mediumblob,"+
-                    "Benificiary_id varchar(50), "+
+                    "FD_Document mediumblob, "+
                     "student_roll_number varchar(20),"+
                     "constraint certificate_of "+
                     "foreign key(student_roll_number)"+
@@ -57,8 +55,7 @@ let createFirstDose = "create table if not exists First_Dose" +
 
 let createSecondDose = "create table if not exists Second_dose"+
                     "(Sdose_id varchar(75) primary key,"+
-                    "FD_Document mediumblob,"+
-                    "Benificiary_id varchar(50),"+
+                    "FD_Document mediumblob, "+
                     "student_roll_number varchar(20),"+
                     "constraint sd_certificate_of "+
                     "foreign key (student_roll_number)"+

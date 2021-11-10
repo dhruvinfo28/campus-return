@@ -35,7 +35,7 @@ router.post('/uploadFirstDose',upload.single('fDoseCertificate'),async (req,res)
         res.redirect('/dashboard');
         return;
     }
-    let fd = new FirstDose(req.file.filename,data,req.body.firstDoseID);
+    let fd = new FirstDose(req.file.filename,data);
     try{
         let dbResponse = await fd.save(req.session.student.rollNumber);
         console.log(dbResponse);
@@ -93,7 +93,7 @@ router.post('/uploadSecondDose',upload.single('sDoseCertificate'),async (req,res
         return;
     }
     
-    let fd = new SecondDose(req.file.filename,data,req.body.secondDoseID);
+    let fd = new SecondDose(req.file.filename,data);
     try{
         let dbResponse = fd.save(req.session.student.rollNumber);   
         console.log(dbResponse);
@@ -162,7 +162,7 @@ router.post('/uploadRtpcr', upload.single('rtpcrCertificate'),async (req,res)=>{
         return;
     }
 
-    let fd = new Rtpcr(pk,data,req.body.rtpcrExpiry);
+    let fd = new Rtpcr(pk,data);
     
     try{
         const dbResponse = await fd.save(req.session.student.rollNumber);

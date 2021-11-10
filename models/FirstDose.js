@@ -1,10 +1,9 @@
 const db = require('../middlewares/dbConnection');
 
 class FirstDose{
-    constructor(Fdose_id,FD_Document,BId){
+    constructor(Fdose_id,FD_Document){
         this.Fdose_id =Fdose_id;
         this.FD_Document = FD_Document;
-        this.BId = BId;
     }
 
     /**
@@ -13,8 +12,8 @@ class FirstDose{
      * @returns  a promise which after resolve gives the response from the database
      */
     async save(rollNumber){
-        let saveQuery = "insert into First_Dose(Fdose_id,FD_Document,student_roll_number,Benificiary_Id) values(?,?,?,?);"
-        return db.promise().query(saveQuery,[this.Fdose_id,this.FD_Document,rollNumber,this.BId]);
+        let saveQuery = "insert into First_Dose(Fdose_id,FD_Document,student_roll_number) values(?,?,?);"
+        return db.promise().query(saveQuery,[this.Fdose_id,this.FD_Document,rollNumber]);
     }
 
     /**
