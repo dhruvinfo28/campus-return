@@ -88,8 +88,10 @@ top:-10px;
 .Signup_Form form:hover{
 background:rgba(1,1,1,1);
 }
-
-.Signup_Form input{
+.Signup_Form select{
+  color: #fff;
+}
+.Signup_Form input, .Signup_Form select{
 width:90%;
 padding:10px;
 background:transparent;
@@ -100,7 +102,7 @@ border-bottom:1px solid rgba(255,255,255,0.5);
 margin:20px 0px;
 }
 
-.Signup_Form input:hover{
+.Signup_Form input:hover, .Signup_Form select:hover{
 border-bottom:1px solid rgba(255,255,255,1);
 }
 

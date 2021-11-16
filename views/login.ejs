@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="CSS/login.css">
     <title>Authenication</title>
     <style>
-        #errorFromBackend{
-            color:red;
+        #errorFromBackend {
+            color: red;
             background-color: white;
         }
     </style>
@@ -44,14 +44,42 @@
             <input type="text" id="username" name="name" placeholder="Full name*" required />
             <input type="text" id="roll_number" name="roll_number" placeholder="Roll Number*" required />
             <input type="email" id="emailaddress" name="email" placeholder="Institute Id*" required />
-            <input type="text" id="course" name="branch" placeholder="Branch" required />
+            <select name="branch" id="course" required>
+                <option value="" selected disabled>Branch</option>
+                <option value="Architecture">Architecture</option>
+                <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Chemical Engineering">Chemical Engineering</option>
+                <option value="Electronics & Communication Engineering">Electronics & Communication Engineering</option>
+                <option value="Electrial Engineering">Electrial Engineering</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Material Science and Engineering">Material Science and Engineering</option>
+                <option value="Mathematics and Scientific Computing">Mathematics and Scientific Computing</option>
+                <option value="Engineering Physics">Engineering Physics</option>
+            </select>
+            <!-- <input type="text" id="course" name="branch" placeholder="Branch" required /> -->
             <!-- <input type="tel" id="mob" name="mob" placeholder="Contact no*" required /> -->
             <input type="password" id="password" name="password" placeholder="Password*" required />
             <input type="password" id="Cpassword" name="Cpassword" placeholder="Confirm Password*"
                 onkeypress="Validate()" required />
-            <input type="number" id="year" name="year" placeholder="Year*" required/>
-            <input type="text" name="programme" id="programme" placeholder="Programme*" required>
-            <button type="submit" value="SignUp" class="content-button status-button" onclick="ValidateSubmission()">Sign Up</button>
+            <select name="year" id="year" required>
+                <option value="" disabled selected> Year of Graduation*</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+            </select>
+            <!-- <input type="number" id="year" name="year" placeholder="Year*" required /> -->
+            <select name="programme" id="programme" required>
+                <option value="" selected disabled>Programme</option>
+                <option value="B.Tech">B.Tech</option>
+                <option value="B.Arch">B.Arch</option>
+                <option value="B.Tech+M.Tech(Dual Degree)">B.Tech+M.Tech(Dual Degree)</option>
+            </select>
+            <!-- <input type="text" name="programme" id="programme" placeholder="Programme*" required> -->
+            <button type="submit" value="SignUp" class="content-button status-button"
+                onclick="ValidateSubmission()">Sign Up</button>
             <section>
                 <span><a onclick="Loginform()">Already Registered?</a></span>
             </section>
