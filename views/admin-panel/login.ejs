@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../public/CSS/login.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/login.css">
+    <title>Admin Login</title>
 </head>
+
 <body>
-    <%= error %> <br>
-    Welcome to admin login!
-    <form action="/admin" method="post">
-        <input type="text" placeholder="admin_name">
-        <input type="password" name="admin_password" id="" placeholder="password">
-        <button type="submit">Login </button>
-    </form>
+    <div class="image-bg">
+        <img src="images/nith_img.jpg" alt="">
+    </div>
+    <div class="Signup_Form">
+        <form action="/admin" method="POST" id="login" class="animate">
+            <div id="errorFromBackend">
+                <%= error %>
+            </div>
+            <h1>Admin Panel</h1>
+            <input type="text" placeholder="admin_name">
+            <input type="password" name="admin_password" id="" placeholder="password">
+            <button type="submit" class="content-button status-button">Login </button>
+        </form>
+    </div>
+
 </body>
+
 </html>
