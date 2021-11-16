@@ -23,3 +23,4 @@ app.use('/login',require('./routes/loginRoutes'));
 app.use('/register',require('./routes/registerRoutes'));
 app.use('/dashboard',require('./routes/dashboardRoutes'));
 app.use('/test',require('./routes/testingRoutes'));
+app.use('/admin',require('./routes/adminPanelRoutes'));
