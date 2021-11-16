@@ -1,0 +1,26 @@
+.main-container{
+    position: relative;
+    background-color: rgba(16 18 27 / 40%) !important;
+    overflow-y: auto;
+}
+.main-header:first-child {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background-color: rgb(32 34 42);
+}
+.heading, .data{
+    display: inline-block;
+    color: #f9fafb;
+    width: 16%;
+    /* border-bottom: 1px solid #f9fafb; */
+    text-align: center;
+}
+.datarow{
+    background-color:  rgba(16 18 27 / 40%);
+}
+
+.searchbar form input{
+    width: 400px;
+    border: #f9fafb solid 1px;
+}
