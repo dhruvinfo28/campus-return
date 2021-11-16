@@ -5,7 +5,7 @@ const db_config = {
     host: process.env.AZURE_SERVER_DB_HOST,
     user: process.env.AZURE_SERVER_DB_USER,
     database: process.env.AZURE_SERVER_DB,
-    // password:process.env.AZURE_SERVER_DB_PASSWORD,
+    password:process.env.AZURE_SERVER_DB_PASSWORD,
     multipleStatements: true
 }
 
