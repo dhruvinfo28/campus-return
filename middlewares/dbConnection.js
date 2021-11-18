@@ -23,9 +23,12 @@ let createStudent = "create table if not exists student" +
                     "student_token varchar(150)," +
                     "student_verified_status tinyint(1));";
 
-let createRTPCR =   "create table if not exists rtpcr" +
-                    "(Rtpcr_id varchar(75) primary key," +
-                    "FD_Document mediumblob, "+
+let createRtpcrA =   "create table if not exists rtpcr_a " +
+                    "(Rtpcr_id varchar(75) primary key, " +
+                    "FD_Document mediumblob); ";
+
+let createRtpcrB = "create table if not exists rtpcr_b "+
+                    "(Rtpcr_id varchar(75) primary key, "+
                     "student_roll_number varchar(20)," +
                     "constraint has_report_of " +
                     "foreign key(student_roll_number)"+
@@ -43,19 +46,24 @@ let createApplication = "create table if not exists Application" +
                     "on update cascade "+
                     "on delete cascade);"
 
-let createFirstDose = "create table if not exists First_Dose" +
+let createFirstDoseA = "create table if not exists First_Dose_A" +
                     "(Fdose_id varchar(75) primary key,"+
-                    "FD_Document mediumblob, "+
-                    "student_roll_number varchar(20),"+
-                    "constraint certificate_of "+
-                    "foreign key(student_roll_number)"+
-                    "references student(student_roll_number)"+
-                    "on update cascade "+
-                    "on delete cascade);"
+                    "FD_Document mediumblob); ";
 
-let createSecondDose = "create table if not exists Second_dose"+
+let createFirstDoseB = "create table if not exists First_Dose_B "+
+                    "(FDose_id varchar(75) primary key, "+
+                    "student_roll_number varchar(20), "+
+                    "constraint fd_certificate_of "+
+                    "foreign key(student_roll_number) references student(student_roll_number) "+
+                    "on update cascade "+
+                    "on delete cascade); "
+            
+let createSecondDoseA = "create table if not exists Second_dose_A"+
                     "(Sdose_id varchar(75) primary key,"+
-                    "FD_Document mediumblob, "+
+                    "FD_Document mediumblob); ";
+
+let createSecondDoseB = "create table if not exists Second_dose_B "+
+                    "(Sdose_id varchar(75) primary key, "+
                     "student_roll_number varchar(20),"+
                     "constraint sd_certificate_of "+
                     "foreign key (student_roll_number)"+
@@ -63,7 +71,7 @@ let createSecondDose = "create table if not exists Second_dose"+
                     "on update cascade "+
                     "on delete  cascade);"
 
-db.promise().query(createStudent+createApplication+createRTPCR+createFirstDose+createSecondDose)
+db.promise().query(createStudent+createApplication+createRtpcrA+createRtpcrB+createFirstDoseA+createFirstDoseB+createSecondDoseA+createSecondDoseB)
     .then(result=>{
         console.log('Tables created,' , result);
     })

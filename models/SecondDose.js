@@ -12,8 +12,9 @@ class SecondDose{
      * @returns  a promise which after resolve gives the response from the database
      */
     async save(rollNumber){
-        let saveQuery = "insert into Second_Dose(Sdose_id,FD_Document,student_roll_number) values(?,?,?);"
-        return db.promise().query(saveQuery,[this.Sdose_id,this.FD_Document,rollNumber]);
+        let saveQuery1 = "insert into Second_Dose_A(Sdose_id,FD_Document) values(?,?);"
+        let saveQuery2 = "insert into Second_Dose_B(Sdose_id,student_roll_number) values(?,?);"
+        return db.promise().query(saveQuery1+saveQuery2,[this.Sdose_id,this.FD_Document,this.Sdose_id,rollNumber]);
     }
 
     /**
@@ -22,7 +23,11 @@ class SecondDose{
      * @returns promise which after resolve gives [rows,fields]
      */
     static async getSecondDoseCertificates(rollNumber){
-        let findQuery = "select * from Second_Dose where student_roll_number = ?";
+        let findQuery = "select a.Sdose_id, a.FD_Document, b.student_roll_number "+
+                        "from second_dose_a as a "+
+                        "inner join second_dose_b as b "+
+                        "on a.Sdose_id = b.Sdose_id "+
+                        "where b.student_roll_number = ?"
         return db.promise().query(findQuery,[rollNumber]);
     } 
 }
