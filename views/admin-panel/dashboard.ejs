@@ -30,7 +30,39 @@
                 </form>
             </div>
         </div>
+        <form action="" class="filter">
+            <p>Filters:</p>
+            <select name="branch" id="course">
+                <option value="" selected disabled>Filter by Branch Name</option>
+                <option value="Architecture">Architecture</option>
+                <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Chemical Engineering">Chemical Engineering</option>
+                <option value="Electronics & Communication Engineering">Electronics & Communication Engineering</option>
+                <option value="Electrial Engineering">Electrial Engineering</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Material Science and Engineering">Material Science and Engineering</option>
+                <option value="Mathematics and Scientific Computing">Mathematics and Scientific Computing</option>
+                <option value="Engineering Physics">Engineering Physics</option>
+            </select>
+            <select name="year" id="year">
+                <option value="" disabled selected> Filter by Year of Study*</option>
+                <option value="2021">1st</option>
+                <option value="2022">2nd</option>
+                <option value="2023">3rd</option>
+                <option value="2024">4th</option>
+                <option value="2025">5th</option>
+            </select>
+            <select name="programme" id="programme">
+                <option value="" selected disabled>Filter by Programme</option>
+                <option value="B.Tech">B.Tech</option>
+                <option value="B.Arch">B.Arch</option>
+                <option value="B.Tech+M.Tech(Dual Degree)">B.Tech+M.Tech(Dual Degree)</option>
+            </select>
+            <button class="content-button status-button">Apply filter</button>
+        </form>
         <div class="wrapper">
+            
             <table class="main-container">
                 <tr class="main-header">
                     <th class="heading">Roll No.</th>

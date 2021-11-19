@@ -41,7 +41,12 @@
     -webkit-backdrop-filter: blur(20px);
     font-size: 15px;
     font-weight: 500;
-    margin: auto;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 /* Header Section Begins */
 .header{
@@ -307,6 +312,12 @@
     transition: 0.3s ease;
     /* min-height: 285px; */
     position: relative;
+}
+.app-card:first-child{
+    margin-left: 0;
+}
+.app-card:last-child{
+    margin-right: 0;
 }
 .app-card:hover {
     transform: scale(1.02);
