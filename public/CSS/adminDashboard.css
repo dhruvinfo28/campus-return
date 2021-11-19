@@ -16,11 +16,38 @@
     /* border-bottom: 1px solid #f9fafb; */
     text-align: center;
 }
-.datarow{
-    background-color:  rgba(16 18 27 / 40%);
+.datarow:nth-child(even){
+    background-color:  rgba(16 18 27 / 60%);
 }
 
-.searchbar form input{
+.datarow:hover {
+    background-color: rgba(16 18 27 / 90%);
+}
+
+.datarow:hover button{
+    transform: scale(1.1);
+}
+
+.searchbar form input, form select{
     width: 400px;
     border: #f9fafb solid 1px;
+    background-color: transparent;
+    color: #f9fafb;
+}
+.filter{
+    display: flex;
+    flex-direction: row;
+    margin: 8px;
+    color: #f9fafb
+}
+.filter select{
+    margin: 5px;
+}
+.filter button{
+    margin: 8px;
+}
+.filter p{
+    /* font-size: ; */
+    margin-right: 3px;
+    margin-left: 8px;
 }
