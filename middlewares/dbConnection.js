@@ -37,8 +37,8 @@ let createRtpcrB = "create table if not exists rtpcr_b "+
                     "on delete cascade);"
 
 let createApplication = "create table if not exists Application" +
-                    "(Application_id int(11) primary key auto_increment,"+
-                    "Application_status char(1) not null,"+
+                    "(Application_id int primary key auto_increment,"+
+                    "Application_status varchar(250) not null,"+
                     "student_roll_number varchar(20) not null,"+
                     "constraint applied_by "+
                     "foreign key(student_roll_number)"+
@@ -69,16 +69,52 @@ let createSecondDoseB = "create table if not exists Second_dose_B "+
                     "foreign key (student_roll_number)"+
                     "references student (student_roll_number)"+
                     "on update cascade "+
-                    "on delete  cascade);"
+                    "on delete  cascade); "
 
-db.promise().query(createStudent+createApplication+createRtpcrA+createRtpcrB+createFirstDoseA+createFirstDoseB+createSecondDoseA+createSecondDoseB)
+let HasCertificateOfFd = "create table if not exists has_certificate_of_fd "+
+                    "(Application_id int primary key, "+
+                    "Fdose_id varchar(75), "+
+                    "constraint fd_belonging_to "+
+                    "foreign key(Application_id) references Application(Application_id) "+
+                    "on update cascade "+
+                    "on delete cascade, "+
+                    "constraint __doc1 "+
+                    "foreign key(Fdose_id) references First_Dose_A(Fdose_id) "+
+                    "on update cascade "+
+                    "on delete set null); "
+
+let HasCertificateOfSd = "create table if not exists has_certificate_of_sd "+
+                    "(Application_id int primary key, "+
+                    "Sdose_id varchar(75), "+
+                    "constraint sd_belonging_to "+
+                    "foreign key(Application_id) references Application(Application_id) "+
+                    "on update cascade "+
+                    "on delete cascade, "+
+                    "constraint __doc2 "+
+                    "foreign key(Sdose_id) references Second_Dose_A(Sdose_id) "+
+                    "on update cascade "+
+                    "on delete set null); "
+
+let HasReportOf = "create table if not exists has_report_of "+
+                    "(Application_id int primary key, "+
+                    "Rtpcr_id varchar(75), "+
+                    "constraint report_belonging_to "+
+                    "foreign key(Application_id) references Application(Application_id) "+
+                    "on update cascade "+
+                    "on delete cascade, "+
+                    "constraint __doc3 "+
+                    "foreign key(Rtpcr_id) references rtpcr_a(Rtpcr_id) "+
+                    "on update cascade "+
+                    "on delete set null); "
+
+
+db.promise().query(createStudent+createApplication+createRtpcrA+createRtpcrB+ createFirstDoseA+createFirstDoseB+createSecondDoseA+createSecondDoseB+HasCertificateOfFd+HasCertificateOfSd+HasReportOf)
     .then(result=>{
         console.log('Tables created,' , result);
     })
     .catch(err=>{
         console.log('Error in creating student table ', err);
     })
-
     
 setInterval(function () {
     db.query("Select 1");
