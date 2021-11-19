@@ -90,6 +90,10 @@ background:rgba(1,1,1,1);
 }
 .Signup_Form select{
   color: #fff;
+  background-color: rgba(16 18 27 / 40%);
+}
+select option {
+  background-color: rgba(16 18 27 / 40%);
 }
 .Signup_Form input, .Signup_Form select{
 width:90%;
