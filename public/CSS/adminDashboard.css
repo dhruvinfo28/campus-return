@@ -37,7 +37,7 @@
 }
 
 select option {
-    background-color: rgba(16 18 27 / 40%);
+    background-color: rgba(16 18 27 / 70%);
 }
 .filter{
     display: flex;
