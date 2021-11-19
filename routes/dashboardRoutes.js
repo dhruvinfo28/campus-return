@@ -8,6 +8,7 @@ const upload = require('../middlewares/multerConfig');
 const FirstDose = require('../models/FirstDose');
 const SecondDose = require('../models/SecondDose');
 const Rtpcr = require('../models/Rtpcr')
+const Application = require('../models/Application')
 
 const router = express.Router();
 
@@ -211,6 +212,25 @@ router.get('/viewRtpcr',async (req,res)=>{
     }
 
 
+})
+
+/**
+ * For submitting an application
+ */
+router.get('/makeApplication',async (req,res)=>{
+    console.log("Reached /dashboard/makeApplication get");
+    let application = new Application('Under Review');
+    try{
+        let result = await application.save(req.session.student.rollNumber);
+        console.log("Application saved with response: ", result);
+        req.flash('error','Application submitted');
+        res.redirect('/dashboard');
+    }catch(err){
+        console.log('Error in saving an application!', err);
+        req.flash('error','Try submitting the application later.');
+        res.redirect('/dashboard');
+        return;
+    }
 })
 
 module.exports = router;
