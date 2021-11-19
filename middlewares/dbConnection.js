@@ -18,8 +18,8 @@ let createStudent = "create table if not exists student" +
                     "student_branch varchar(60),"+
                     "student_email_id varchar(60),"+
                     "student_password varchar(150),"+
-                    "student_yearofgrad int,"+
-                    "student_programme varchar(20)," + 
+                    "student_year int,"+
+                    "student_programme varchar(70)," + 
                     "student_token varchar(150)," +
                     "student_verified_status tinyint(1));";
 
