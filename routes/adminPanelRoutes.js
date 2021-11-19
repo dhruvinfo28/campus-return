@@ -37,4 +37,10 @@ router.post('/logout',(req,res)=>{
         res.redirect('/admin');
     }
 })
+
+//For testing view application
+router.get('/view',authenticate,(req,res)=>{
+    res.render('admin-panel/view-application');
+})
+
 module.exports = router;
