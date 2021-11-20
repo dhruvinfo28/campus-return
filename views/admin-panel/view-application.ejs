@@ -1,12 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>View Application</title>
+    <link rel="stylesheet" href="../CSS/studentDashboard.css">
+    <style>
+        #error{
+            background-color: white;
+            color:red;
+        }
+        .txt-wrapper{
+            display: inline-block;
+            text-align: left;
+            align-items: center;
+            justify-content: flex-end;
+            width: 187px;
+            margin: auto;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        form select, form textarea{
+            background-color: transparent;
+            margin: 20px;
+            color: #f9fafb;
+            border: 1px solid #f9fafb;
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            /* box-shadow: 1px 1px 5px #f9fafb; */
+        }
+        form textarea::placeholder{
+            color: #f9fafb;
+        }
+        form select{
+            height: 40px;
+            border: 0;
+            border-bottom: 1px solid #f9fafb;
+            
+        }
+
+    </style>
 </head>
+
 <body>
-    Hello Duniya!
+    <div class="image-bg">
+        <img src="../images/nith_img.jpg" alt="">
+    </div>
+    <div class="app">
+        <div class="header">
+            <div class="header-menu">Application Number: 1</div>
+            <div class="header-profile">
+                <form action="/logout" method="post">
+                    <button type="submit" class="logout">
+                        <img src="../images/logout.png" alt="">
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="wrapper">
+                <div class="content-wrapper">
+                    <div class="content-section">
+                        <div class="content-section-title">Applicant Details</div>
+                        <ul>
+                            <li>
+                                <div class="products">Name of Applicant:</div>
+                                <div class="txt-wrapper">Manav Doda</div>
+                            </li>
+                            <li>
+                                <div class="products">Roll Number of Applicant:</div>
+                                <div class="txt-wrapper">195057</div>
+                            </li>
+                            <li>
+                                <div class="products">Email ID of Applicant:</div>
+                                <div class="txt-wrapper">195057@nith.ac.in</div>
+                            </li>
+                            <li>
+                                <div class="products">Applicant Branch:</div>
+                                <div class="txt-wrapper">Computer Science & Engineering</div>
+                            </li>
+                            <li>
+                                <div class="products">Programme Enrolled in:</div>
+                                <div class="txt-wrapper">B.Tech</div>
+                            </li>
+                            <li>
+                                <div class="products">Current Year:</div>
+                                <div class="txt-wrapper">3rd</div>
+                            </li>
+                            <li>
+                                <div class="products">First Dose Certificate:</div>
+                                <div class="txt-wrapper">
+                                    <button class="content-button status-button" onClick="window.location.href='/dashboard/viewFirstDose';">View Certificate</button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="products">Second Dose Certificate:</div>
+                                <div class="txt-wrapper">
+                                    <button class="content-button status-button" onClick="window.location.href='/dashboard/viewFirstDose';">View Certificate</button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="products">RTPCR Report:</div>
+                                <div class="txt-wrapper">
+                                    <button class="content-button status-button" onClick="window.location.href='/dashboard/viewFirstDose';">View Certificate</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="content-section">
+                        <div class="content-section-title">Response Area</div>
+                        <form class="response">
+                            <select name="status" id="" required>
+                                <option value="" selected disabled>Application Status</option>
+                                <option value="0">Rejected</option>
+                                <option value="1">Accepted</option>
+                            </select>
+                            <textarea name="review" id="" cols="30" rows="10" required placeholder="Enter your review here..."></textarea>
+                            <button class="content-button status-button">Submit Review</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
