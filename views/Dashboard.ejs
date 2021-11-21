@@ -12,6 +12,12 @@
             background-color: white;
             color:red;
         }
+        .button-wrapper{
+            margin-right: 15%;
+        }
+        .status-button:nth-child(even){
+            margin-left: 20px !important;
+        }
     </style>
 </head>
 
@@ -57,27 +63,27 @@
                         <ul>
                             <li>
                                 <div class="products">First Dose Certificate</div>
-                                <span class="status">
+                                <!-- <span class="status">
                                     <span class="status-circle orange"></span>
-                                    Under Review</span>
+                                    Under Review</span> -->
                                 <div class="button-wrapper">
                                     <button class="content-button status-button" onClick="window.location.href='/dashboard/viewApplicationFirstDose';">View Certificate</button>
                                 </div>
                             </li>
                             <li>
                                 <div class="products">Second Dose Certificate</div>
-                                <span class="status">
+                                <!-- <span class="status">
                                     <span class="status-circle red"></span>
-                                    Upload first</span>
+                                    Upload first</span> -->
                                 <div class="button-wrapper">
-                                    <button class="content-button status-button open" onClick="window.location.href='/dashboard/viewApplicationSecondDose';">Not Uploaded Yet</button>
+                                    <button class="content-button status-button" onClick="window.location.href='/dashboard/viewApplicationSecondDose';">View Certificate</button>
                                 </div>
                             </li>
                             <li>
                                 <div class="products">RTPCR Report Certificate</div>
-                                <span class="status">
+                                <!-- <span class="status">
                                     <span class="status-circle green"></span>
-                                    Verified</span>
+                                    Verified</span> -->
                                 <div class="button-wrapper">
                                     <button class="content-button status-button" onClick="window.location.href='/dashboard/viewApplicationRtpcr';">View Certificate</button>
                                 </div>
@@ -85,7 +91,7 @@
                         </ul>
                     </div>
                     <div class="content-section">
-                        <div class="content-section-title">New Application Form</div>
+                        <div class="content-section-title">Update Documents</div>
                         <div class="apps-card">
                             <div class="app-card">
                                 <span>First Dose Certificate</span>
@@ -95,7 +101,7 @@
                                             required />
                                     </div>
                                     <div class="app-card-button">
-                                        <button class="content-button status-button" type="submit">Upload</button>
+                                        <button class="content-button status-button" type="submit">Update</button>
                                         <button class="content-button status-button" onClick="window.location.href='/dashboard/viewFirstDose';">View</button>
                                     </div>
                                 </form>
@@ -108,7 +114,7 @@
                                             required />
                                     </div>
                                     <div class="app-card-button">
-                                        <button class="content-button status-button">Upload</button>
+                                        <button class="content-button status-button">Update</button>
                                         <button class="content-button status-button" onClick="window.location.href='/dashboard/viewSecondDose';" style="margin-left: 4px;">View</button>
                                         
                                     </div>
@@ -122,7 +128,7 @@
                                         required />
                                     </div>
                                     <div class="app-card-button">
-                                        <button class="content-button status-button">Upload</button>
+                                        <button class="content-button status-button">Update</button>
                                         <button class="content-button status-button" onClick="window.location.href='/dashboard/viewRtpcr';" style="margin-left: 4px;">View</button>
                                         
                                     </div>
