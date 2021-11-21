@@ -11,6 +11,10 @@ class Application{
         return db.promise().query(saveQuery,[this.applicationStatus,rollNumber,this.applicationReview]);
     }
 
+    static async findByRollNumber(rollNumber){
+        let findQuery = "select * from Application where student_roll_number = ?";
+        return db.promise().query(findQuery,[rollNumber]);
+    }
     
 }
 

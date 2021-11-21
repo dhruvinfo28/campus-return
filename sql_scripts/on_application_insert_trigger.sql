@@ -16,19 +16,30 @@ begin
     
     select count(*) into rowcount from first_dose_b where student_roll_number = roll_number;
     set rowcount = rowcount -1 ;
-    set req_fdose_id = (select Fdose_id from first_dose_b where student_roll_number = roll_number limit 1 offset rowcount);
+    if rowcount <> -1 then
+		set req_fdose_id = (select Fdose_id from first_dose_b where student_roll_number = roll_number limit 1 offset rowcount);
+    end if;
     
     select count(*) into rowcount from second_dose_b where student_roll_number = roll_number;
     set rowcount = rowcount -1 ;
-    select Sdose_id into req_sdose_id from second_dose_b where student_roll_number = roll_number limit 1 offset rowcount;
+	if rowcount <> -1 then
+		select Sdose_id into req_sdose_id from second_dose_b where student_roll_number = roll_number limit 1 offset rowcount;
+    end if;
     
     select count(*) into rowcount from rtpcr_b where student_roll_number = roll_number;
     set rowcount = rowcount -1 ;
-    select rtpcr_id into req_rtpcr_id from rtpcr_b where student_roll_number = roll_number limit 1 offset rowcount;
+	if rowcount <> -1 then	
+		select rtpcr_id into req_rtpcr_id from rtpcr_b where student_roll_number = roll_number limit 1 offset rowcount;
+    end if;
     
-	insert into has_certificate_of_fd values(curr_application_id,req_fdose_id);
-	insert into has_certificate_of_sd values(curr_application_id,req_sdose_id);
-	insert into has_report_of values(curr_application_id,req_rtpcr_id);
-    
+    if req_fdose_id <> '' then
+		insert into has_certificate_of_fd values(curr_application_id,req_fdose_id);
+	end if;
+    if req_sdose_id <> '' then
+		insert into has_certificate_of_sd values(curr_application_id,req_sdose_id);
+	end if;
+    if req_rtpcr_id <> '' then
+		insert into has_report_of values(curr_application_id,req_rtpcr_id);
+	end if;
 end //
 delimiter ;

@@ -233,4 +233,66 @@ router.get('/makeApplication',async (req,res)=>{
     }
 })
 
+/**
+ * To view First Dose certificate from last application
+ */
+
+router.get('/viewApplicationFirstDose',async (req,res)=>{
+    console.log("Reached /dashboard/viewAppicationFirstDose get");
+
+    let requiredApplicationId;
+    let requiredFdoseId;
+
+    //Finding requiredApplicationId from rollNumber
+    try{
+        let [rows,fields] = await Application.findByRollNumber(req.session.student.rollNumber);
+        if(rows.length == 0){
+            console.log("No application found");
+            req.flash('error',"You haven't submitted any application yet");
+            res.redirect('/dashboard');
+            return;
+        }
+        requiredApplicationId = rows[rows.length-1].Application_id;
+    }
+    catch(applicationFindError){
+        console.log("Cannot find applications by roll number: ", applicationFindError);
+        req.flash('error','Try to view later');
+        res.redirect('/dashboard');
+        return;
+    }
+
+    // Finding requiredFdoseId from requiredApplicationId
+    try{
+       let [rows,fields] = await FirstDose.findByApplicationId(requiredApplicationId);
+       if(rows.length == 0){
+           console.log("No corresponding first dose certificate");
+           req.flash('error','No corresponding first dose certificate');
+           res.redirect('/dashboard');
+           return;
+       }
+       requiredFdoseId = rows[0].Fdose_id;
+    }catch(FdoseAppFindErr){
+        console.log("Error in finding Fdose_id by application ID: ",FdoseAppFindErr );
+        req.flash('error','Try to view later');
+        res.redirect('/dashboard');
+        return;
+    }
+
+    try{
+        let [rows,fields] = await FirstDose.findByID(requiredFdoseId);
+        if(rows.length == 0){
+            req.flash('error','First Dose document for this application not found!');
+            res.redirect('/dashboard');
+        }else{
+           res.write(rows[0].FD_Document);
+           res.end();
+        }
+    }catch(findFdoseByIderror){
+        console.log("First Dose Find By Id error: ",findFdoseByIderror);
+        req.flash('error','Try again later');
+        res.redirect('/dashboard');
+    }
+
+})
+
 module.exports = router;
