@@ -21,6 +21,20 @@ class Rtpcr{
         return db.promise().query(findQuery,[rollNumber]);
     }
 
+    static async findByApplicationId(application_id){
+        let findQuery = "select Rtpcr_id from has_report_of where Application_id = ?";
+        return db.promise().query(findQuery,[application_id]);
+    }
+
+    static async findByID(Rtpcr_id){
+        let findQuery = "select a.Rtpcr_id, a.FD_Document, b.student_roll_number "+
+                        "from rtpcr_a as a "+
+                        "inner join rtpcr_b as b "+ 
+                        "on a.Rtpcr_id = b.Rtpcr_id "+
+                        "where a.Rtpcr_id = ?";
+        return db.promise().query(findQuery,[Rtpcr_id]);
+
+    }
 }
 
 module.exports = Rtpcr;

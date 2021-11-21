@@ -355,7 +355,66 @@ router.get('/viewApplicationSecondDose', async (req, res) => {
         req.flash('error', 'Try again later');
         res.redirect('/dashboard');
     }
-
-
 })
+
+/**
+ * To view rtpcr of last application
+ */
+router.get('/viewApplicationRtpcr', async (req, res) => {
+    console.log("Reached /dashboard/viewAppicationRtpcr get");
+
+    let requiredApplicationId;
+    let requiredRtpcrId;
+
+    //Finding requiredApplicationId from rollNumber
+    try {
+        let [rows, fields] = await Application.findByRollNumber(req.session.student.rollNumber);
+        if (rows.length == 0) {
+            console.log("No application found");
+            req.flash('error', "You haven't submitted any application yet");
+            res.redirect('/dashboard');
+            return;
+        }
+        requiredApplicationId = rows[rows.length - 1].Application_id;
+    }
+    catch (applicationFindError) {
+        console.log("Cannot find applications by roll number: ", applicationFindError);
+        req.flash('error', 'Try to view later');
+        res.redirect('/dashboard');
+        return;
+    }
+
+    //Find requiredSdoseId from requiredApplicationId
+    try {
+        let [rows, fields] = await Rtpcr.findByApplicationId(requiredApplicationId);
+        if (rows.length == 0) {
+            console.log("No corresponding Rtpcr certificate");
+            req.flash('error', 'No corresponding Rtpcr certificate');
+            res.redirect('/dashboard');
+            return;
+        }
+        requiredRtpcrId = rows[0].Rtpcr_id;
+    } catch (RtpcrAppFindErr) {
+        console.log("Error in finding Rtpcr_id by application ID: ", RtpcrAppFindErr);
+        req.flash('error', 'Try to view later');
+        res.redirect('/dashboard');
+        return;
+    }
+
+    try {
+        let [rows, fields] = await Rtpcr.findByID(requiredRtpcrId);
+        if (rows.length == 0) {
+            req.flash('error', 'Rtpcr document for this application not found!');
+            res.redirect('/dashboard');
+        } else {
+            res.write(rows[0].FD_Document);
+            res.end();
+        }
+    } catch (findRtpcrByIderror) {
+        console.log("Rtpcr Find By Id error: ", findRtpcrByIderror);
+        req.flash('error', 'Try again later');
+        res.redirect('/dashboard');
+    }
+})
+
 module.exports = router;
