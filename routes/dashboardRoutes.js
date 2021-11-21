@@ -219,7 +219,7 @@ router.get('/viewRtpcr',async (req,res)=>{
  */
 router.get('/makeApplication',async (req,res)=>{
     console.log("Reached /dashboard/makeApplication get");
-    let application = new Application('Under Review');
+    let application = new Application(0,'Under Review');
     try{
         let result = await application.save(req.session.student.rollNumber);
         console.log("Application saved with response: ", result);

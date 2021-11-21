@@ -38,8 +38,9 @@ let createRtpcrB = "create table if not exists rtpcr_b "+
 
 let createApplication = "create table if not exists Application" +
                     "(Application_id int primary key auto_increment,"+
-                    "Application_status varchar(250) not null,"+
+                    "Application_status int not null,"+
                     "student_roll_number varchar(20) not null,"+
+                    "application_review varchar(500), "+
                     "constraint applied_by "+
                     "foreign key(student_roll_number)"+
                     "references student(student_roll_number)"+
