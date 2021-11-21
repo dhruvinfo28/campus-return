@@ -29,7 +29,21 @@ class SecondDose{
                         "on a.Sdose_id = b.Sdose_id "+
                         "where b.student_roll_number = ?"
         return db.promise().query(findQuery,[rollNumber]);
-    } 
+    }
+    
+    static async findByApplicationId(application_id){
+        let findQuery = "select Sdose_id from has_certificate_of_sd where Application_id = ?";
+        return db.promise().query(findQuery,[application_id]);
+    }
+
+    static async findByID(Sdose_id){
+        let findQuery = "select a.Sdose_id, a.FD_Document, b.student_roll_number "+
+                        "from second_dose_a as a "+
+                        "inner join second_dose_b as b "+ 
+                        "on a.Sdose_id = b.Sdose_id "+
+                        "where a.Sdose_id = ?";
+        return db.promise().query(findQuery,[Sdose_id]);
+    }
 }
 
 module.exports = SecondDose;
