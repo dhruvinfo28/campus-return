@@ -20,6 +20,7 @@ router.use(checkLoginStatus);
 router.get('/', async (req, res) => {
     console.log("Reached /dashboard get");
     let lastApplicationStatus;
+    let lastApplicationReview;
     try{
         console.log(req.session.student.rollNumber);
         let [rows,fields] = await Application.findLastApplicationStatus(req.session.student.rollNumber);
@@ -28,11 +29,12 @@ router.get('/', async (req, res) => {
         }else{
             console.log(rows);
             lastApplicationStatus = rows[0].application_status;
+            lastApplicationReview = rows[0].application_review;
         }
     }catch(err){
        console.log(err);
     }
-    res.render('Dashboard', { student: req.session.student, error: req.flash('error'),lastApplicationStatus });
+    res.render('Dashboard', { student: req.session.student, error: req.flash('error'),lastApplicationStatus,lastApplicationReview});
 })
 
 /**
