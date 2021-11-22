@@ -49,6 +49,9 @@
 </head>
 
 <body>
+    <div>
+        <%= error %>
+    </div>
     <div class="image-bg">
         <img src="../../images/nith_img.jpg" alt="">
     </div>
@@ -120,14 +123,14 @@
                     </div>
                     <div class="content-section">
                         <div class="content-section-title">Response Area</div>
-                        <form class="response">
+                        <form class="response" action="/admin/reviewApplication/<%= data.application_id%>" method="post">
                             <select name="status" id="" required>
                                 <option value="" selected disabled>Application Status</option>
-                                <option value="0">Rejected</option>
+                                <option value="-1">Rejected</option>
                                 <option value="1">Accepted</option>
                             </select>
                             <textarea name="review" id="" cols="30" rows="10" required placeholder="Enter your review here..."></textarea>
-                            <button class="content-button status-button">Submit Review</button>
+                            <button class="content-button status-button" type="submit">Submit Review</button>
                         </form>
                     </div>
                 </div>

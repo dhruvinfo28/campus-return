@@ -101,6 +101,12 @@ class Application{
 
         return db.promise().query(findQuery,[application_id]);
     }
+
+    static async updateReview(application_id,status,review){
+        let updateQuery = "update application set application_status = ?, application_review = ? "+
+        "where application_id = ?";
+        return db.promise().query(updateQuery,[status,review,application_id]);
+    }
 }
 
 module.exports = Application;

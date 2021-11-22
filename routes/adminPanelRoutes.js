@@ -48,7 +48,7 @@ router.get('/dashboard',authenticate,async (req,res)=>{
         res.redirect('/admin');
         return;
     }
-    res.render('admin-panel/dashboard',{data:data,error:req.flash('error')});
+    res.render('admin-panel/dashboard',{data:data,error:req.flash('error'),reviewSuccess:req.flash('review-success')});
 })
 
 
@@ -84,7 +84,7 @@ router.get('/application/:id',authenticate,async (req,res)=>{
         console.log("Error in finding student data: ", err);
         return;
     }
-    res.render('admin-panel/view-application',{docIds,data})
+    res.render('admin-panel/view-application',{docIds,data,error:req.flash('error')})
 })
 
 /**
@@ -149,6 +149,25 @@ router.get('/application/rtpcr/:rtpcr_id',authenticate,async (req,res)=>{
         return;
     }
 })
+
+/**
+ * For handling review request by admin
+ */
+
+router.post('/reviewApplication/:application_id',authenticate,async (req,res)=>{
+
+    try{
+        let dbResponse = Application.updateReview(req.params.application_id, req.body.status,req.body.review);
+        req.flash('review-success',"Last review was successfully done!");
+        res.redirect('/admin/dashboard');
+    } catch(err){
+        req.flash('error','Couldn\'t update, try again later');
+        res.redirect(`/admin/application/${req.params.application_id}`);
+        console.log("Couldn't review application: ", err);
+    }
+
+})
+
 /**
  * For logging the admin out
  */
