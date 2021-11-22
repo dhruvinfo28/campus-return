@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Application</title>
-    <link rel="stylesheet" href="../CSS/studentDashboard.css">
+    <link rel="stylesheet" href="../../CSS/studentDashboard.css">
     <style>
         #error{
             background-color: white;
@@ -50,7 +50,7 @@
 
 <body>
     <div class="image-bg">
-        <img src="../images/nith_img.jpg" alt="">
+        <img src="../../images/nith_img.jpg" alt="">
     </div>
     <div class="app">
         <div class="header">
@@ -58,7 +58,7 @@
             <div class="header-profile">
                 <form action="/logout" method="post">
                     <button type="submit" class="logout">
-                        <img src="../images/logout.png" alt="">
+                        <img src="../../images/logout.png" alt="">
                     </button>
                 </form>
             </div>
@@ -70,44 +70,50 @@
                         <ul>
                             <li>
                                 <div class="products">Name of Applicant:</div>
-                                <div class="txt-wrapper">Manav Doda</div>
+                                <div class="txt-wrapper"><%= data.student_name %></div>
                             </li>
                             <li>
                                 <div class="products">Roll Number of Applicant:</div>
-                                <div class="txt-wrapper">195057</div>
+                                <div class="txt-wrapper"><%= data.student_roll_number %></div>
                             </li>
                             <li>
                                 <div class="products">Email ID of Applicant:</div>
-                                <div class="txt-wrapper">195057@nith.ac.in</div>
+                                <div class="txt-wrapper"><%= data.student_email_id %></div>
                             </li>
                             <li>
                                 <div class="products">Applicant Branch:</div>
-                                <div class="txt-wrapper">Computer Science & Engineering</div>
+                                <div class="txt-wrapper"><%= data.student_branch %></div>
                             </li>
                             <li>
                                 <div class="products">Programme Enrolled in:</div>
-                                <div class="txt-wrapper">B.Tech</div>
+                                <div class="txt-wrapper"><%= data.student_programme %></div>
                             </li>
                             <li>
                                 <div class="products">Current Year:</div>
-                                <div class="txt-wrapper">3rd</div>
+                                <div class="txt-wrapper"><%= data.student_year %></div>
                             </li>
                             <li>
                                 <div class="products">First Dose Certificate:</div>
                                 <div class="txt-wrapper">
-                                    <button class="content-button status-button" onClick="window.location.href='/dashboard/viewFirstDose';">View Certificate</button>
+                                    <% if(docIds[0] != '-1'){ %>
+                                    <button class="content-button status-button" onClick="window.location.href='/admin/application/firstDose/<%= docIds[0]%>';">View Certificate</button>
+                                    <% } %>
                                 </div>
                             </li>
                             <li>
                                 <div class="products">Second Dose Certificate:</div>
                                 <div class="txt-wrapper">
-                                    <button class="content-button status-button" onClick="window.location.href='/dashboard/viewFirstDose';">View Certificate</button>
+                                    <% if(docIds[1] != '-1') {%>
+                                    <button class="content-button status-button" onClick="window.location.href='/admin/application/secondDose/<%= docIds[1]%>';">View Certificate</button>
+                                    <% } %>
                                 </div>
                             </li>
                             <li>
                                 <div class="products">RTPCR Report:</div>
                                 <div class="txt-wrapper">
-                                    <button class="content-button status-button" onClick="window.location.href='/dashboard/viewFirstDose';">View Certificate</button>
+                                    <% if(docIds[2] != '-1') {%>
+                                    <button class="content-button status-button" onClick="window.location.href='/admin/application/rtpcr/<%= docIds[2]%>';">View Certificate</button>
+                                    <% } %>
                                 </div>
                             </li>
                         </ul>
