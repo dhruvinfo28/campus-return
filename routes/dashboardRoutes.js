@@ -17,9 +17,22 @@ router.use(checkLoginStatus);
 /**
  * Handles a get request for student dashboard
  */
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     console.log("Reached /dashboard get");
-    res.render('Dashboard', { student: req.session.student, error: req.flash('error') });
+    let lastApplicationStatus;
+    try{
+        console.log(req.session.student.rollNumber);
+        let [rows,fields] = await Application.findLastApplicationStatus(req.session.student.rollNumber);
+        if(rows.length==0){
+            lastApplicationStatus = 'No application submitted yet!';
+        }else{
+            console.log(rows);
+            lastApplicationStatus = rows[0].application_status;
+        }
+    }catch(err){
+       console.log(err);
+    }
+    res.render('Dashboard', { student: req.session.student, error: req.flash('error'),lastApplicationStatus });
 })
 
 /**

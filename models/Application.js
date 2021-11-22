@@ -107,6 +107,11 @@ class Application{
         "where application_id = ?";
         return db.promise().query(updateQuery,[status,review,application_id]);
     }
+
+    static async findLastApplicationStatus(rollNumber){
+        let lastAppicationStatusQuery = "select application_status,application_review from application where student_roll_number = ? order by application_id desc limit 1;"
+        return db.promise().query(lastAppicationStatusQuery,[rollNumber]);
+    }
 }
 
 module.exports = Application;
