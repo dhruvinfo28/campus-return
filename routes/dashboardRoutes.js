@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
         console.log(req.session.student.rollNumber);
         let [rows,fields] = await Application.findLastApplicationStatus(req.session.student.rollNumber);
         if(rows.length==0){
-            lastApplicationStatus = 'No application submitted yet!';
+            lastApplicationStatus = -1;
         }else{
             console.log(rows);
             lastApplicationStatus = rows[0].application_status;
