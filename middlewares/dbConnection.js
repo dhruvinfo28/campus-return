@@ -116,9 +116,9 @@ db.promise().query(createStudent+createApplication+createRtpcrA+createRtpcrB+ cr
     .catch(err=>{
         console.log('Error in creating student table ', err);
     })
-    
+
 setInterval(function () {
-    db.query("Select 1");
+    db.query("Select 1"); 
 }, 5000);
 
 module.exports = db;
