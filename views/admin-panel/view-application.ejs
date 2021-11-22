@@ -121,6 +121,7 @@
                             </li>
                         </ul>
                     </div>
+                    <%if(data.application_status==0){%>
                     <div class="content-section">
                         <div class="content-section-title">Response Area</div>
                         <form class="response" action="/admin/reviewApplication/<%= data.application_id%>" method="post">
@@ -133,6 +134,7 @@
                             <button class="content-button status-button" type="submit">Submit Review</button>
                         </form>
                     </div>
+                    <% } %>
                 </div>
             </div>
         </div>
