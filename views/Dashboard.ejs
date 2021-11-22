@@ -25,9 +25,6 @@
     <div class="image-bg">
         <img src="images/nith_img.jpg" alt="">
     </div>
-    <div id="error" >
-        <%= error %>
-    </div>
     <div class="app">
         <div class="header">
             <div class="header-menu">Welcome <%= student.name %>!</div>
@@ -52,13 +49,23 @@
                     <div class="floating-bar">
                         <div class="hwrap">
                             <div class="hmove">
-                                 <div class="hitem">Last Application Status: <%= lastApplicationStatus %></div>
+                                <div class="hitem">
+                                    Last Application Status: 
+                                    <% if(lastApplicationStatus==0) {%>
+                                        Under Review
+                                    <%} else {%>
+                                        Review comes here
+                                    <%}%>
+                                </div>
 
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="content-wrapper">
+                    <div id="error" >
+                        <%= error %>
+                    </div>
                     <div class="content-section">
                         <div class="content-section-title">Last Aplication Details</div>
                         <ul>
@@ -101,10 +108,17 @@
                                         <input type="file" id="fDoseCertificate" name="fDoseCertificate" placeholder="Upload First Dose Certificate"
                                             required />
                                     </div>
-                                    <div class="app-card-button">
-                                        <button class="content-button status-button" type="submit">Update</button>
-                                        <button class="content-button status-button" onClick="window.location.href='/dashboard/viewFirstDose';">View</button>
-                                    </div>
+                                    <% if(lastApplicationStatus==-1) {%>
+                                        <div class="app-card-button">
+                                            <button class="content-button status-button" type="submit">Update</button>
+                                            <button class="content-button status-button" onClick="window.location.href='/dashboard/viewFirstDose';">View</button>
+                                        </div>
+                                    <% } else {%>
+                                        <div class="app-card-button">
+                                            <button class="content-button status-button open" type="submit" disabled>Update</button>
+                                            <button class="content-button status-button open" onClick="window.location.href='/dashboard/viewFirstDose';" disabled>View</button>
+                                        </div>
+                                    <% } %>
                                 </form>
                             </div>
                             <div class="app-card">
@@ -114,11 +128,17 @@
                                         <input type="file" id="sDoseCertificate" name="sDoseCertificate" placeholder="Upload Second Dose Certificate"
                                             required />
                                     </div>
-                                    <div class="app-card-button">
-                                        <button class="content-button status-button">Update</button>
-                                        <button class="content-button status-button" onClick="window.location.href='/dashboard/viewSecondDose';" style="margin-left: 4px;">View</button>
-                                        
-                                    </div>
+                                    <% if(lastApplicationStatus==-1) {%>
+                                        <div class="app-card-button">
+                                            <button class="content-button status-button">Update</button>
+                                            <button class="content-button status-button" onClick="window.location.href='/dashboard/viewSecondDose';" style="margin-left: 4px;">View</button>
+                                        </div>
+                                    <% } else {%>
+                                        <div class="app-card-button">
+                                            <button class="content-button status-button open" disabled>Update</button>
+                                            <button class="content-button status-button open" disabled onClick="window.location.href='/dashboard/viewSecondDose';" style="margin-left: 4px;">View</button>
+                                        </div>
+                                    <% } %>
                                 </form>
                             </div>
                             <div class="app-card">
@@ -128,16 +148,26 @@
                                         <input type="file" id="rtpcrCertificate" name="rtpcrCertificate" placeholder="Upload RTPCR Certificate"
                                         required />
                                     </div>
+                                    <% if(lastApplicationStatus==-1) {%>
                                     <div class="app-card-button">
                                         <button class="content-button status-button">Update</button>
                                         <button class="content-button status-button" onClick="window.location.href='/dashboard/viewRtpcr';" style="margin-left: 4px;">View</button>
-                                        
                                     </div>
+                                    <% } else {%>
+                                        <div class="app-card-button">
+                                            <button class="content-button status-button open" disabled>Update</button>
+                                            <button class="content-button status-button open" disabled onClick="window.location.href='/dashboard/viewRtpcr';" style="margin-left: 4px;">View</button>
+                                        </div>
+                                    <%}%>
                                 </form>
                             </div>
                         </div>
                         <form action="/dashboard/makeApplication" class="new-application-submit">
+                            <% if(lastApplicationStatus==-1) {%>
                             <button class="content-button status-button" type="submit">Submit Application</button>
+                            <% } else { %>
+                            <button class="content-button status-button open" disabled type="submit">Submit Application</button>
+                            <% } %>
                         </form>
                     </div>
                 </div>
