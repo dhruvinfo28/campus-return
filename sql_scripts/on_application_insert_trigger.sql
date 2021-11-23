@@ -1,5 +1,5 @@
 delimiter //
-create trigger if not exists on_application_insert
+create trigger on_application_insert
 after insert 
 on Application For each row
 begin
