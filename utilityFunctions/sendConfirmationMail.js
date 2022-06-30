@@ -1,3 +1,4 @@
+require("dotenv").config()
 const transporter = require('../middlewares/nodeMailerTransporter');
 const Student = require('../models/Student');
 const url = require('./url');
@@ -17,6 +18,7 @@ module.exports = async function(studentRollNumber, studentEmail){
 
     try{
         let response = await transporter.sendMail({
+            from: process.env.EMAIL,
             to:studentEmail,
             subject:'Confirmation mail from campus return',
             html:`<a href = ${url}/confirmEmail/${student.student_token}>Click here!</a>`
